@@ -5,3 +5,4 @@ backend/data/*.db-journal
 backend/data/*.db-wal
 backend/data/*.db-shm
 .DS_Store
+.claude/
