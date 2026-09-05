@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SmritiSaathi Care</title>
+<meta name="description" content="SmritiSaathi Care — a dementia-support app for patients and their caregivers." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          maroon: '#6B2737', maroonDark: '#4E1D29', ochre: '#C88B2E', ochreSoft: '#E6C88A',
+          leafgreen: '#3E5C3A', slateb: '#4A5C7A', clay: '#8B5E34', alertc: '#B23A2E',
+          cream: '#F3EEE2', panel: '#FFFDF8', ink: '#2B2420', inksoft: '#5A4F45', linec: '#E4DCC9',
+        },
+        fontFamily: { serif2: ['ui-serif', 'Georgia', 'Times New Roman', 'serif'] },
+      },
+    },
+  };
+</script>
+<!-- Chart.js ships WITH the frontend (frontend/vendor/), loaded from a
+     relative path. No CDN, no dependency on which server hosts these files,
+     works offline. It is a plain synchronous <script> in <head>, so the
+     Chart global is guaranteed to exist before charts.js runs at the end of
+     <body> — that is the load-order fix, not a guard around the symptom.
+     The CDN below is only a last-resort fallback if the vendored copy is
+     missing; chartsReady() reports honestly when neither is available. -->
+<script src="vendor/chart.umd.min.js"></script>
+<script>
+  if (typeof Chart === 'undefined') {
+    document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"><\/script>');
+  }
+</script>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="textile-bg text-ink min-h-screen">
+<div id="app"></div>
+<div id="chat-host"></div>
+<div id="toast" class="hidden fixed left-1/2 -translate-x-1/2 bottom-6 bg-maroonDark text-white px-5 py-3 rounded-xl shadow-lg text-sm max-w-[90%] text-center z-50"></div>
+
+<!-- Load order matters:
+     config.js         defines APP_NAME + API_BASE_URL (the only place a
+                       backend URL is configured),
+     bhashini-client.js defines t()/i18n,
+     app.js            defines state/api/apiFetch/render used by the rest. -->
+<script src="config.js"></script>
+<script src="bhashini-client.js"></script>
+<script src="app.js"></script>
+<script src="realtime.js"></script>
+<script src="auth.js"></script>
+<script src="games.js"></script>
+<script src="games-part2.js"></script>
+<script src="patient.js"></script>
+<script src="charts.js"></script>
+<script src="daterange.js"></script>
+<script src="dashboard.js"></script>
+<script src="dashboard-schedule.js"></script>
+<script src="dashboard-reports.js"></script>
+<script src="dashboard-analysis.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>

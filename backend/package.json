@@ -1,0 +1,27 @@
+{
+  "name": "smritisaathi-care-backend",
+  "version": "1.0.0",
+  "description": "SmritiSaathi Care backend — auth, patients, schedules, reminders, reports, AI analysis, Bhashini translation, chat",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.11.1",
+    "chart.js": "^4.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^2.7.0",
+    "pdfkit": "^0.20.2",
+    "uuid": "^9.0.1"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true,
+    "pdfkit@0.20.2": true
+  }
+}

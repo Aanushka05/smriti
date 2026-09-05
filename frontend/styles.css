@@ -1,0 +1,151 @@
+/* SmritiSaathi Care — styles.css
+   Northeast India-inspired theme: cream/off-white base, maroon, ochre,
+   forest green, muted blue, earthy brown, used sparingly as accents and
+   woven-textile motifs rather than covering the whole screen. */
+
+body { font-family: system-ui, -apple-system, sans-serif; }
+
+.woven {
+  background-image: repeating-linear-gradient(135deg, #6B2737 0 10px, #C88B2E 10px 20px, #3E5C3A 20px 30px);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid #4A5C7A; outline-offset: 2px;
+}
+
+.fade-in { animation: fadeIn .25s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px);} to { opacity:1; transform:translateY(0);} }
+
+/* Subtle woven-textile cultural background, low opacity, kept off the
+   readable content cards. Diamond/triangle motifs reference Northeast
+   Indian textile borders (e.g. Mizo puanchei, Assamese gamosa borders)
+   without reproducing any specific copyrighted or sacred design. */
+.textile-bg {
+  background-color: #F3EEE2;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(107,39,55,0.05) 0 2px, transparent 2px 18px),
+    repeating-linear-gradient(-45deg, rgba(200,139,46,0.05) 0 2px, transparent 2px 18px),
+    repeating-linear-gradient(0deg, rgba(62,92,58,0.04) 0 2px, transparent 2px 24px);
+}
+
+/* Header accent: a thin woven-diamond border strip */
+.diamond-border {
+  height: 10px;
+  background-image: linear-gradient(45deg, #6B2737 25%, transparent 25%),
+    linear-gradient(-45deg, #6B2737 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #C88B2E 75%),
+    linear-gradient(-45deg, transparent 75%, #C88B2E 75%);
+  background-size: 14px 14px;
+  background-position: 0 0, 0 7px, 7px -7px, -7px 0;
+  opacity: 0.85;
+}
+
+.card-textile {
+  background-color: #FFFDF8;
+  border: 1px solid #E4DCC9;
+  position: relative;
+}
+.card-textile::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(200,139,46,0.15);
+}
+
+.pulse-rec { animation: pulseRec 1s ease-in-out infinite; }
+@keyframes pulseRec { 0%,100%{ box-shadow:0 0 0 0 rgba(178,58,46,.45);} 50%{ box-shadow:0 0 0 10px rgba(178,58,46,0);} }
+
+/* Chat widget */
+#chat-panel { transition: transform .2s ease, opacity .2s ease; }
+.chat-bubble-user { background:#4A5C7A; color:#fff; }
+.chat-bubble-assistant { background:#FFFDF8; border:1px solid #E4DCC9; color:#2B2420; }
+
+/* Live/offline data pill */
+.pill-live { background: rgba(62,92,58,0.12); color:#3E5C3A; }
+.pill-offline { background: rgba(200,139,46,0.15); color:#8B5E34; }
+
+/* =====================================================================
+   PART 2 — accessibility, patient-facing controls, responsive tuning
+   The palette and textile motifs above are unchanged; this section only
+   makes targets bigger, contrast stronger and layouts safer on small
+   screens.
+   ===================================================================== */
+
+/* Every interactive control clears the 44x44px minimum touch target. */
+button, [role="button"], select, input[type="date"], input[type="time"] {
+  min-height: 44px;
+}
+
+/* Large, unambiguous buttons for the patient screen. */
+.btn-patient {
+  min-height: 56px;
+  padding: 0.85rem 1.25rem;
+  border-radius: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .12s ease;
+}
+.btn-patient:active { transform: translateY(1px); }
+.btn-patient.btn-done { background: #3E5C3A; color: #fff; }
+.btn-patient.btn-quiet { background: #FFFDF8; color: #2B2420; border-color: #C9BFA6; }
+.btn-patient:disabled { opacity: .55; cursor: not-allowed; }
+
+/* Focus ring is thick and high-contrast — it has to be visible to someone
+   navigating slowly by keyboard. */
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 4px solid #4A5C7A;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Loading spinner used by panelState(). */
+.spinner {
+  width: 22px; height: 22px;
+  border: 3px solid #E4DCC9;
+  border-top-color: #6B2737;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Fallback text shown in place of a chart that could not be drawn. */
+.chart-fallback { pointer-events: none; }
+
+/* Tables scroll inside their card instead of pushing the page sideways. */
+table { border-collapse: collapse; }
+
+/* Patient screens get a larger base size than the caregiver dashboard. */
+@media (max-width: 640px) {
+  html { font-size: 17px; }
+  .btn-patient { width: 100%; font-size: 1.2rem; }
+}
+
+/* Respect the reader's own settings. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+@media (prefers-contrast: more) {
+  .card-textile { border-color: #8A7E63; }
+  .text-inksoft { color: #3C332B; }
+}
+
+/* Anything only for screen readers. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
