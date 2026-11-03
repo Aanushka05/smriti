@@ -1,0 +1,206 @@
+/* ============================================================================
+   themes.css — a quiet nod to where the user is, nothing more.
+
+   HOW IT WORKS
+   Every colour in the app is a CSS variable holding an "R G B" triple, so the
+   Tailwind classes already in the markup (bg-maroon, text-inksoft, …) pick up
+   the active theme without a single component changing. Switching theme is one
+   attribute on <html>.
+
+   THE RULE THESE THEMES FOLLOW
+   Only the ACCENT hues and a barely-there background tint change between
+   themes. Text and surface colours are near-identical everywhere, so contrast
+   cannot drift as someone changes language. A cultural touch that made text
+   harder to read for an 80-year-old with failing sight would be a bad trade,
+   and this file is written so that trade cannot happen by accident.
+
+   Every combination below was checked to keep body text at or above roughly
+   12:1 on its own background, and the primary button at or above 7:1 — well
+   past the WCAG AA floor of 4.5:1, because the users of this app are elderly
+   and often reading on a cheap screen in poor light.
+   ==========================================================================*/
+
+:root {
+  /* Neutral — the original palette. English and anything unthemed. */
+  --c-maroon: 107 39 55;
+  --c-maroonDark: 78 29 41;
+  --c-ochre: 200 139 46;
+  --c-ochreSoft: 230 200 138;
+  --c-leafgreen: 62 92 58;
+  --c-slateb: 74 92 122;
+  --c-clay: 139 94 52;
+  --c-alertc: 178 58 46;
+
+  --c-cream: 243 238 226;
+  --c-panel: 255 253 248;
+  --c-ink: 43 36 32;
+  --c-inksoft: 90 79 69;
+  --c-linec: 228 220 201;
+
+  /* The faint woven texture behind the app. */
+  --texture-opacity: 0.035;
+  --texture-angle: 45deg;
+}
+
+/* --------------------------------------------------------------- Assam
+   Muga silk and the red-and-white gamosa: warm gold ground, deep red accent,
+   the green of the tea gardens. */
+:root[data-theme='assam'] {
+  --c-maroon: 155 34 38;          /* gamosa red */
+  --c-maroonDark: 116 26 29;
+  --c-ochre: 181 137 48;          /* muga gold */
+  --c-ochreSoft: 232 208 150;
+  --c-leafgreen: 45 90 61;        /* tea garden */
+  --c-cream: 246 240 224;
+  --c-panel: 255 253 246;
+  --c-linec: 229 217 190;
+  --texture-opacity: 0.045;
+  --texture-angle: 30deg;
+}
+
+/* -------------------------------------------------------- Maharashtra
+   Paithani: deep purple with gold, on an ivory ground. */
+:root[data-theme='maharashtra'] {
+  --c-maroon: 91 44 111;          /* paithani purple */
+  --c-maroonDark: 66 31 81;
+  --c-ochre: 191 145 42;          /* zari gold */
+  --c-ochreSoft: 234 205 145;
+  --c-leafgreen: 37 88 79;        /* peacock green */
+  --c-cream: 245 241 233;
+  --c-panel: 255 254 250;
+  --c-linec: 226 219 205;
+  --texture-opacity: 0.04;
+  --texture-angle: 60deg;
+}
+
+/* ------------------------------------------------------------- Manipur
+   Phanek and the Kangla: deep green with a temple red. */
+:root[data-theme='manipur'] {
+  --c-maroon: 122 32 48;
+  --c-maroonDark: 92 24 36;
+  --c-ochre: 176 128 52;
+  --c-ochreSoft: 228 200 148;
+  --c-leafgreen: 30 84 66;
+  --c-cream: 242 240 231;
+  --c-panel: 253 253 249;
+  --c-linec: 222 217 202;
+  --texture-opacity: 0.04;
+  --texture-angle: 90deg;
+}
+
+/* ---------------------------------------------------------------- Bodo
+   Dokhona: soft yellow-green with a warm red border. */
+:root[data-theme='bodo'] {
+  --c-maroon: 140 45 45;
+  --c-maroonDark: 105 33 33;
+  --c-ochre: 168 146 44;
+  --c-ochreSoft: 226 213 148;
+  --c-leafgreen: 55 95 52;
+  --c-cream: 244 242 227;
+  --c-panel: 254 254 247;
+  --c-linec: 226 222 197;
+  --texture-opacity: 0.04;
+  --texture-angle: 15deg;
+}
+
+/* ---------------------------------------------------------- Pan-Indian
+   For Hindi and the wider Indian languages: saffron and deep indigo. */
+:root[data-theme='india'] {
+  --c-maroon: 40 62 120;          /* deep indigo, used as the primary */
+  --c-maroonDark: 28 45 90;
+  --c-ochre: 196 122 36;          /* saffron */
+  --c-ochreSoft: 236 205 156;
+  --c-leafgreen: 47 96 60;
+  --c-cream: 245 241 231;
+  --c-panel: 255 253 248;
+  --c-linec: 227 220 204;
+  --texture-opacity: 0.035;
+  --texture-angle: 45deg;
+}
+
+/* --------------------------------------------------------- Bengal / East
+   Terracotta and off-white. */
+:root[data-theme='bengal'] {
+  --c-maroon: 148 60 42;          /* terracotta */
+  --c-maroonDark: 111 44 31;
+  --c-ochre: 186 141 55;
+  --c-ochreSoft: 232 206 152;
+  --c-leafgreen: 52 92 62;
+  --c-cream: 246 242 233;
+  --c-panel: 255 254 250;
+  --c-linec: 228 221 205;
+  --texture-opacity: 0.04;
+  --texture-angle: 75deg;
+}
+
+/* ===========================================================================
+   The theme only ever tints. It never animates, never moves, and never
+   reduces contrast — a shifting background is actively disorienting for
+   someone with dementia.
+   ========================================================================= */
+
+/* Colour changes are eased very slightly so switching language does not
+   flash, but nothing MOVES. */
+:root {
+  --theme-fade: 220ms;
+}
+
+body,
+.card-textile,
+.textile-bg {
+  transition: background-color var(--theme-fade) ease,
+              border-color var(--theme-fade) ease,
+              color var(--theme-fade) ease;
+}
+
+/* Anyone who has asked their device to stop animating gets no transition at
+   all — including this one. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --theme-fade: 0ms; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------- FOCUS
+   A visible focus ring on everything interactive. Keyboard and switch-access
+   users cannot use this app without one, and the default ring disappears
+   against several of the palettes above. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid rgb(var(--c-ochre));
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Windows high-contrast mode replaces colours entirely; make sure the ring
+   survives it. */
+@media (forced-colors: active) {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid Highlight;
+  }
+}
+
+/* The theme swatch on the language picker. */
+.theme-dot {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: rgb(var(--c-maroon));
+  border: 1px solid rgb(var(--c-linec));
+  vertical-align: middle;
+}

@@ -1,0 +1,68 @@
+﻿Smriti,Weekly report
+Generated,"6/9/2026, 2:52:30 pm"
+
+PATIENT INFORMATION
+Patient name,Demo Patient
+Patient ID,demo_pt_549947
+Age,73
+Gender,Female
+Report period,Weekly
+Period start,"30/8/2026, 2:52:30 pm"
+Period end,"6/9/2026, 2:52:30 pm"
+
+PERFORMANCE SUMMARY
+Overall score %,74
+Best score %,100
+Average response time (s),4.8
+Total sessions,9
+
+Activity area,Sessions,Average %,Best %,Avg response (s),Trend
+Memory,3,77,90,4.6,improving
+Attention,2,60,70,5.5,declining
+Language,1,100,100,3.4,none
+Orientation,1,80,80,4.2,none
+Problem solving,1,60,60,6.1,none
+Pattern recognition,1,80,80,4.4,none
+
+REMINDER SUMMARY
+Total reminders,2
+Completed,0
+Missed,0
+Snoozed,0
+Pending,2
+Adherence %,
+
+Reminder,Date,Time,Type,Status
+Morning Medicine,2026-09-06,08:00,Medicine,pending
+Memory Exercise,2026-09-06,18:00,Activity,pending
+
+COGNITIVE SESSIONS
+Number of sessions,9
+Average score %,74
+Best score %,100
+Trend,Improving
+
+Date,Activity area,Game,Level,Score,Rounds,Accuracy %,Response time (s)
+"6/9/2026, 2:52:30 pm",Memory,Memory Match,2,3,5,60,5.2
+"6/9/2026, 2:52:30 pm",Memory,Family Faces,2,4,5,80,4.6
+"6/9/2026, 2:52:30 pm",Memory,Memory Match,2,5,5,90,4.1
+"6/9/2026, 2:52:30 pm",Attention,Spot the Odd One,2,4,5,70,4.8
+"6/9/2026, 2:52:30 pm",Attention,Spot the Odd One,2,3,5,50,6.2
+"6/9/2026, 2:52:30 pm",Language,Word Recall,2,5,5,100,3.4
+"6/9/2026, 2:52:30 pm",Orientation,Day and Date,2,4,5,80,4.2
+"6/9/2026, 2:52:30 pm",Problem solving,Sequence Recall,2,3,5,60,6.1
+"6/9/2026, 2:52:30 pm",Pattern recognition,Weaving Completion,2,4,5,80,4.4
+
+DATA ANALYSIS
+Overall trend,Improving
+Summary,Recent in-app performance is improving; the average score across 9 sessions is 74%.
+
+Type,Finding,Detail
+Strength,Memory performance has remained consistent,"Average 77% across 3 sessions, best 90%."
+Strength,Response times are steady,Averaging 4.8s per question.
+Area to watch,Nothing needs attention from the recorded activity,"Scores, response times and reminder adherence are all within the ranges this app watches for."
+Suggested action,Continue the current routine of regular cognitive activities.,
+Suggested action,Keep daily routines and reminder times consistent.,
+Suggested action,Share this summary with the doctor or ASHA worker at the next visit.,
+
+Note,"This report summarises activity recorded inside the app. It is an observation of in-app performance, not a medical assessment or diagnosis. Please discuss any concerns with the patient's doctor or ASHA worker."
